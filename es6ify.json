@@ -1,0 +1,235 @@
+{
+    "blob/Blob.js": {
+        "transforms": [
+            {
+                "type": "append",
+                "parameters": "if (!window.Blob) window.Blob = Blob;\nexport default Blob;"
+            }
+        ]
+    },
+    "bootstrap/dist/js/bootstrap.js": {
+        "transforms": [
+            {
+                "type": "es6-modules",
+                "parameters": {
+                    "import": [
+                        { "var": "$", "module": "vendor/jquery" }
+                    ],
+                    "export": [
+                        { "var": "null", "name": "default" }
+                    ]
+                }
+            }
+        ]
+    },
+    "d3/d3.js": {
+        "transforms": [
+            {
+                "type": "es6-modules",
+                "parameters": {
+                    "export": [
+                        { "var": "d3", "name": "default" }
+                    ]
+                }
+            }
+        ]
+    },
+    "ember/ember.js": {
+        "transforms": [
+            {
+                "type": "prepend",
+                "parameters": "var Ember = { imports: { Handlebars: Handlebars, jQuery: $ } };"
+            },
+            {
+                "type": "replace",
+                "parameters": {
+                    "regex": "var element = document.createElement\\('div'\\);",
+                    "replace": "var element = 'createElementNS' in document ? document.createElementNS(parentNode.namespaceURI, parentNode.tagName) : document.createElement(parentNode.tagName);"
+                }
+            },
+            {
+                "type": "replace",
+                "parameters": {
+                    "regex": "attributeName = split\\[1\\] \\|\\| property;",
+                    "replace": "attributeName = split.slice(1).join(':') || property;"
+                }
+            },
+            {
+                "type": "es6-modules",
+                "parameters": {
+                    "import": [
+                        { "var": "$", "module": "vendor/jquery" },
+                        { "var": "Handlebars", "module": "vendor/handlebars" }
+                    ],
+                    "export": [
+                        { "var": "Ember", "name": "default" }
+                    ]
+                }
+            }
+        ]
+    },
+    "ember-data/ember-data.js": {
+        "transforms": [
+            {
+                "type": "es6-modules",
+                "parameters": {
+                    "import": [
+                        { "var": "Em", "module": "vendor/ember" }
+                    ],
+                    "export": [
+                        { "var": "DS", "name": "default" }
+                    ]
+                }
+            }
+        ]
+    },
+    "ember-renderspeed/ember-renderspeed.js": {
+        "transforms": [
+            {
+                "type": "es6-modules",
+                "parameters": {
+                    "import": [
+                        { "var": "Ember", "module": "vendor/ember" }
+                    ],
+                    "export": [
+                        { "var": "Ember", "name": "default" }
+                    ]
+                }
+            }
+        ]
+    },
+    "filesaver/FileSaver.js": {
+        "transforms": [
+            {
+                "type": "es6-modules",
+                "parameters": {
+                    "export": [
+                        { "var": "saveAs", "name": "default" }
+                    ]
+                }
+            }
+        ]
+    },
+    "handlebars/handlebars.js": {
+        "transforms": [
+            {
+                "type": "es6-modules",
+                "parameters": {
+                    "export": [
+                        { "var": "Handlebars", "name": "default" }
+                    ]
+                }
+            }
+        ]
+    },
+    "jquery/dist/jquery.js": {
+        "transforms": [
+            {
+                "type": "es6-modules",
+                "parameters": {
+                    "export": [
+                        { "var": "$", "name": "default" }
+                    ]
+                }
+            }
+        ]
+    },
+    "marked/lib/marked.js": {
+        "transforms": [
+            {
+                "type": "replace",
+                "parameters": {
+                    "regex": ";\\(function\\(\\) {",
+                    "replace": ""
+                }
+            },
+            {
+                "type": "replace",
+                "parameters": {
+                    "regex": "if \\(typeof exports[\\S\\s]*\\(\\)\\);",
+                    "replace": "export default marked;\n"
+                }
+            }
+        ]
+    },
+    "moment/moment.js": {
+        "transforms": [
+            {
+                "type": "prepend",
+                "parameters": "var Moment, define = function(_,f) { Moment = f(0,0,{}); }; define.amd = true;"
+            },
+            {
+                "type": "es6-modules",
+                "parameters": {
+                    "export": [
+                        { "var": "Moment", "name": "default" }
+                    ]
+                }
+            }
+        ]
+    },
+    "moment-timezone/moment-timezone.js": {
+        "transforms": [
+            {
+                "type": "prepend",
+                "parameters": "var MomentTimezone, define = function(_,_,f) { MomentTimezone = f(moment); }; define.amd = true;"
+            },
+            {
+                "type": "es6-modules",
+                "parameters": {
+                    "import": [
+                        { "var": "moment", "module": "vendor/moment" }
+                    ],
+                    "export": [
+                        { "var": "MomentTimezone", "name": "default" }
+                    ]
+                }
+            }
+        ]
+    },
+    "nv.d3/nd.d3.js": {
+        "transforms": [
+            {
+                "type": "es6-modules",
+                "parameters": {
+                    "import": [
+                        { "var": "d3", "module": "vendor/d3" }
+                    ],
+                    "export": [
+                        { "var": "window.nv", "name": "default" }
+                    ]
+                }
+            }
+        ]
+    },
+    "pdfjs-build/pdf.js": {
+        "transforms": [
+            {
+                "type": "es6-modules",
+                "parameters": {
+                    "export": [
+                        { "var": "PDFJS", "name": "default" }
+                    ]
+                }
+            }
+        ]
+    },
+    "socket.io-client/dist/socket.io.js": {
+        "transforms": [
+            {
+                "type": "replace",
+                "parameters": {
+                    "regex": "var io = \\('undefined' === typeof module \\? {} : module.exports\\);",
+                    "replace": ""
+                }
+            },
+            {
+                "type": "replace",
+                "parameters": {
+                    "regex": "if \\(typeof define[\\S\\s]*\\)\\(\\);",
+                    "replace": "}).apply(window);\nexport default window.io;\n"
+                }
+            }
+        ]
+    }
+}
