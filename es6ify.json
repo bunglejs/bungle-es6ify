@@ -22,6 +22,51 @@
             }
         ]
     },
+    "bootstrap-contextmenu/bootstrap-contextmenu.js": {
+        "transforms": [
+            {
+                "type": "es6-modules",
+                "parameters": {
+                    "import": [
+                        { "var": "jQuery", "module": "vendor/jquery" }
+                    ],
+                    "export": [
+                        { "var": "null", "name": "default" }
+                    ]
+                }
+            }
+        ]
+    },
+    "bootstrap-datepicker/js/bootstrap-datepicker.js": {
+        "transforms": [
+            {
+                "type": "es6-modules",
+                "parameters": {
+                    "import": [
+                        { "var": "jQuery", "module": "vendor/jquery" }
+                    ],
+                    "export": [
+                        { "var": "null", "name": "default" }
+                    ]
+                }
+            }
+        ]
+    },
+    "bootstrap3-typeahead/bootstrap3-typeahead.js": {
+        "transforms": [
+            {
+                "type": "es6-modules",
+                "parameters": {
+                    "import": [
+                        { "var": "$", "module": "vendor/jquery" }
+                    ],
+                    "export": [
+                        { "var": "null", "name": "default" }
+                    ]
+                }
+            }
+        ]
+    },
     "d3/d3.js": {
         "transforms": [
             {
@@ -98,15 +143,39 @@
             }
         ]
     },
-    "filesaver/FileSaver.js": {
+    "eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js": {
         "transforms": [
+            {
+                "type": "prepend",
+                "parameters": "var Picker, define = function(_,f) { Picker = f(jquery, moment); }; define.amd = true;"
+            },
             {
                 "type": "es6-modules",
                 "parameters": {
+                    "import": [
+                        { "var": "jquery", "module": "vendor/jquery" },
+                        { "var": "moment", "module": "vendor/moment" }
+                    ],
                     "export": [
-                        { "var": "saveAs", "name": "default" }
+                        { "var": "Picker", "name": "default" }
                     ]
                 }
+            }
+        ]
+    },
+    "fastclick/lib/fastclick.js": {
+        "transforms": [
+            {
+                "type": "prepend",
+                "parameters": "var define = null, module = { exports:{} };\nexport default module.exports;"
+            }
+        ]
+    },
+    "FileSaver/FileSaver.js": {
+        "transforms": [
+            {
+                "type": "prepend",
+                "parameters": "var exports = module = {};\nexport default module.exports;"
             }
         ]
     },
@@ -134,6 +203,14 @@
             }
         ]
     },
+    "leaflet/dist/leaflet.js": {
+        "transforms": [
+            {
+                "type": "prepend",
+                "parameters": "var module = { exports:{} };\nexport default module.exports;"
+            }
+        ]
+    },
     "marked/lib/marked.js": {
         "transforms": [
             {
@@ -156,15 +233,7 @@
         "transforms": [
             {
                 "type": "prepend",
-                "parameters": "var Moment, define = function(_,f) { Moment = f(0,0,{}); }; define.amd = true;"
-            },
-            {
-                "type": "es6-modules",
-                "parameters": {
-                    "export": [
-                        { "var": "Moment", "name": "default" }
-                    ]
-                }
+                "parameters": "var module = { exports:{} };\nexport default module.exports;"
             }
         ]
     },
@@ -187,7 +256,7 @@
             }
         ]
     },
-    "nv.d3/nd.d3.js": {
+    "nvd3/nv.d3.js": {
         "transforms": [
             {
                 "type": "es6-modules",
@@ -214,20 +283,25 @@
             }
         ]
     },
-    "socket.io-client/dist/socket.io.js": {
+    "socket.io-client/socket.io.js": {
         "transforms": [
             {
-                "type": "replace",
-                "parameters": {
-                    "regex": "var io = \\('undefined' === typeof module \\? {} : module.exports\\);",
-                    "replace": ""
-                }
-            },
+                "type": "prepend",
+                "parameters": "var exports = module = {};\nexport default module.exports;"
+            }
+        ]
+    },
+    "typeahead.js/dist/typeahead.bundle.js": {
+        "transforms": [
             {
-                "type": "replace",
+                "type": "es6-modules",
                 "parameters": {
-                    "regex": "if \\(typeof define[\\S\\s]*\\)\\(\\);",
-                    "replace": "}).apply(window);\nexport default window.io;\n"
+                    "import": [
+                        { "var": "$", "module": "vendor/jquery" }
+                    ],
+                    "export": [
+                        { "var": "null", "name": "default" }
+                    ]
                 }
             }
         ]
