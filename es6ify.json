@@ -241,7 +241,7 @@
         "transforms": [
             {
                 "type": "prepend",
-                "parameters": "var MomentTimezone, define = function(_,_,f) { MomentTimezone = f(moment); }; define.amd = true;"
+                "parameters": "var MomentTimezone, define = function(_,f) { MomentTimezone = f(moment); }; define.amd = true;"
             },
             {
                 "type": "es6-modules",
